@@ -18,6 +18,10 @@ public class CreateFolders : AssetPostprocessor
             {
                 CreateFoldersAtPath(assetPath, serviceFolders);
             }
+            else if (assetPath.EndsWith("Service") && assetPath.Contains("/GameFeatures/"))
+            {
+                CreateFoldersAtPath(assetPath, serviceFolders);
+            }
             else if (assetPath.EndsWith("Feature") && assetPath.Contains("/GameFeatures/"))
             {
                 CreateFoldersAtPath(assetPath, serviceFolders);
