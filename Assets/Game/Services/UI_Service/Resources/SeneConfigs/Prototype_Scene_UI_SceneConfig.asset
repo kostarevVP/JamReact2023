@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1527d79005dfd304893aa7df04aebaa4, type: 3}
+  m_Name: Prototype_Scene_UI_SceneConfig
+  m_EditorClassIdentifier: 
+  _windowPrefabs:
+  - {fileID: 8770292261683149688, guid: 4a5890b4b77e8454cae13d6d741a654c, type: 3}
+  - {fileID: 8656102903178498742, guid: 5654d523f82cf034ca45a7bd5f9999b8, type: 3}
+  SceneName:
+  - Prototype_Scene
+  SceneIndex: 02000000
+  _scenes:
+  - {fileID: 102900000, guid: 3c036482052b41649bcdf7ea88b29e60, type: 3}
