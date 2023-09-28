@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using WKosArch.Common.DIContainer;
 using WKosArch.Services.UIService;
 
 namespace WKosArch.UIService.Views.Windows
@@ -27,7 +26,6 @@ namespace WKosArch.UIService.Views.Windows
             {
                 if(_userInterface == null)
                 {
-                    //_userInterface = new DIVar<UserInterface>().Value;
                     _userInterface = Container.Resolve<UserInterface>();
                 }
 

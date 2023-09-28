@@ -2,8 +2,8 @@ using Assets.LocalPackages.WKosArch.Scripts.Common.DIContainer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro.EditorUtilities;
 using UnityEngine;
+using WKosArch.Extentions;
 using WKosArch.Services.UIService.Common;
 using WKosArch.UIService.Views.Windows;
 
@@ -11,7 +11,6 @@ namespace WKosArch.Services.UIService
 {
     public class UserInterface : MonoBehaviour
     {
-
         private const string PrefabPath = "[INTERFACE]";
 
         public event Action<WindowViewModel> WindowOpened;
@@ -80,7 +79,7 @@ namespace WKosArch.Services.UIService
             return result;
         }
 
-        public IWindowOpenHandler ShowWindow<T>() where T : WindowViewModel
+        public void ShowWindow<T>() where T : WindowViewModel
         {
             var windowViewModelType = typeof(T);
 
@@ -96,18 +95,13 @@ namespace WKosArch.Services.UIService
 
                 if (prefab == null)
                 {
-                    Debug.Log($"<color=#FF0000>Couldn't open window ({windowViewModelType}). It doesn't exist in the config of this scene. </color>");
-                    return null;
+                    Log.PrintWarning($"<color=#FF0000>Couldn't open window ({windowViewModelType}). It doesn't exist in the config of this scene. </color>");
                 }
 
                 windowViewModel = CreateWindowViewModel(prefab);
 
                 ActivateWindowViewModel(windowViewModel);
             }
-
-            var handler = new WindowOpenHandler(windowViewModel, this);
-
-            return handler;
         }
 
         public void SetBackDestination<TWindowViewModel>() where TWindowViewModel : WindowViewModel
@@ -226,6 +220,8 @@ namespace WKosArch.Services.UIService
         {
             var window = windowViewModel.Window;
 
+            _windowStack.RemoveLast(windowViewModel.GetType());
+
             window.Destroyed -= OnWindowDestroyed;
             window.Hidden -= OnWindowHidden;
 
@@ -239,7 +235,7 @@ namespace WKosArch.Services.UIService
 
         private void OnWindowHidden(WindowViewModel windowViewModel)
         {
-            _windowStack.RemoveLast(windowViewModel.GetType());
+            //_windowStack.RemoveLast(windowViewModel.GetType());
             windowViewModel.Unsubscribe();
 
             var focusedWindowType = _windowStack.GetLast();
